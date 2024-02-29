@@ -1,0 +1,125 @@
+variable: theScore(0),var0(0),var1(0);
+
+theScore = 0;
+print("-------------");
+var0 = Average(Close,10);
+
+var1 = Average(Close,5);
+
+//長均趨勢多方+2，否則-2
+if var0>=var0[1] then
+ theScore = theScore + 2
+Else
+ theScore = theScore - 2;
+print(var0>=var0[1] , "1" , theScore);
+
+//短均趨勢多方+2，否則-2
+if var1>=var1[1] then
+ theScore = theScore + 2
+Else
+ theScore = theScore - 2;
+print(var1>=var1[1] , "2" , theScore);
+//短均>長均+1，否則-1
+if var1>=var0 then
+ theScore = theScore + 1
+Else
+ theScore = theScore - 1;
+print(var1>=var0 , "3" , theScore);
+//收盤價>長均+1，否則-1
+if close>=var0 then
+ theScore = theScore + 1
+Else
+ theScore = theScore - 1;
+print(close>=var0 , "4" , theScore);
+//收盤價>短均+1，否則-1
+if close>=var1 then
+ theScore = theScore + 1
+Else
+ theScore = theScore - 1;
+print(close>=var1 , "5" , theScore);
+if theScore>0 then
+ setquoteColor(RGB(255,255,255))
+Else
+ setquoteColor(RGB(250,84,40));
+
+//ret=theScore;
+switch (abs(theScore))
+
+begin
+
+  Case 1:
+
+    ret = "✪";
+
+  Case 2:
+
+    ret = "✪✪";
+
+  Case 3:
+
+    ret = "✪✪✪";
+
+  Case 4:
+
+    ret = "✪✪✪✪";
+
+  Case 5:
+
+    ret = "✪✪✪✪✪";
+Case 6:
+
+    ret = "✪✪✪✪✪✪";
+Case 7:
+
+    ret = "✪✪✪✪✪✪✪";
+
+
+  Case 0:
+
+    ret = "";
+
+End;
+
+
+=====================
+
+variable: thersi(0);
+
+thersi = RSI(Close, 14);
+
+if thersi >= 50 then
+
+begin
+
+    ret = "☀️";
+
+	setquoteColor(RGB(230,155,88));
+
+end
+
+else
+
+begin
+
+    ret = "🌙";
+
+	setquoteColor(RGB(250,84,40));
+
+end;
+
+================
+
+variable: thersi(0);
+thersi=RSI(Close, 14);
+if thersi>=50 then
+begin
+ ret="強";
+ setquoteColor(red);
+end
+else
+begin
+ret="弱";
+ setquoteColor(green);
+end;
+
+
